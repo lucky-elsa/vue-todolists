@@ -4,10 +4,10 @@ import actions from "./actions";
 import getters from "./getters";
 
 export default createStore({
-   state:{
-      todos: [],
-   },
-   mutations,
-   actions,
-   getters
-})
+  state: {
+    todos: [],
+  },
+  mutations,
+  actions,
+  getters,
+});
