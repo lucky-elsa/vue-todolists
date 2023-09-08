@@ -1,9 +1,9 @@
 export default {
-  addTodo: ({ type }, data) => {
-    type("ADD_TODO", data);
+  addTodostore: ({ commit }, data) => {
+    commit("ADD_TODO", data);
   },
 
-  removeTodo: ({ type }, index) => {
-    type("REMOVE_TODO", index);
+  removeTodostore: ({ commit }, index) => {
+    commit("REMOVE_TODO", index);
   },
 };
