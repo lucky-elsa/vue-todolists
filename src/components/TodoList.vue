@@ -5,8 +5,11 @@
          <ul>
             <li v-for="(todo, index) in todos" :key="index">
                <div class="no_style">{{ index + 1 }}</div>
-               <div class="content_style">{{ todo }}</div>
+               <div v-if="isVisual !== index" class="content_style">{{ todo }}</div>
+               <input v-else v-model="editValue" class="content_style" @keyup.enter="saveEdit(index)" />
                <div class="button_style">
+                  <button v-if="isVisual === index" @click="saveEdit(index)">Save</button>
+                  <button v-else @click="editTodo(index)">Edit</button>
                   <button @click="removeTodo(index)">Remove</button>
                </div>
             </li>
@@ -25,10 +28,12 @@ export default {
    data() {
       return {
          newTodo: '',
+         isVisual: -1,
+         editValue: '',
       };
    },
    methods: {
-      ...mapActions(['addTodostore', 'removeTodostore']),
+      ...mapActions(['addTodostore', 'editTodostore', 'removeTodostore']),
       addTodo() {
          if (this.newTodo.trim() === '') return;
          this.addTodostore(this.newTodo);
@@ -36,6 +41,16 @@ export default {
       },
       removeTodo(index) {
          this.removeTodostore(index)
+      },
+      editTodo(index) {
+         this.isVisual = index;
+         this.editValue = this.todos[index];
+      },
+      saveEdit(index) {
+         this.isVisual = -1;
+         const updatedTodo = this.editValue;
+
+         this.editTodostore({ updatedTodo, index });
       }
    }
 }
@@ -55,8 +70,9 @@ export default {
    font-size: 15px;
    padding-left: 8px;
 }
+
 ul {
-   width: 400px;
+   width: 500px;
 }
 
 ul li {
