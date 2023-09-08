@@ -6,11 +6,11 @@
             <li v-for="(todo, index) in todos" :key="index">
                <div class="no_style">{{ index + 1 }}</div>
                <div v-if="isVisual !== index" class="content_style">{{ todo }}</div>
-               <input v-else v-model="editValue" class="content_style" @keyup.enter="saveEdit(index)" />
+               <input style="margin-top: -11px; height: 35px" v-else v-model="editValue" class="content_style" @keyup.enter="saveEdit(index)" />
                <div class="button_style">
-                  <button v-if="isVisual === index" @click="saveEdit(index)">Save</button>
-                  <button v-else @click="editTodo(index)">Edit</button>
-                  <button @click="removeTodo(index)">Remove</button>
+                  <button style="background-color: rgb(91, 91, 255);" v-if="isVisual === index" @click="saveEdit(index)">Save</button>
+                  <button style="background-color: rgb(91, 91, 255);" v-else @click="editTodo(index)">Edit</button>
+                  <button style="background-color: rgb(252, 97, 97); margin-left: 10px;" @click="removeTodo(index)">Remove</button>
                </div>
             </li>
          </ul>
@@ -75,8 +75,19 @@ ul {
    width: 500px;
 }
 
+button {
+   border: 0;
+   padding: 7px 10px 7px 10px;
+   color: #fff;
+   font-size: 15px;
+   margin-top: -7px;
+   font-weight: 500;
+   border-radius: 5px;
+}
+
 ul li {
-   height: 30px;
+   margin-top: 10px;
+   height: 40px;
    display: flex;
    list-style: none;
 }
