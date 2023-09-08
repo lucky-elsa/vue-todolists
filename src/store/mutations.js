@@ -1,6 +1,6 @@
 export default {
   ADD_TODO(state, data) {
-    state.todos.psuh(data);
+    state.todos.push(data);
   },
 
   REMOVE_TODO(state, index) {
